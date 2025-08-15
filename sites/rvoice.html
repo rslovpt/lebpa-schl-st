@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>rVoice Test</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <div class="main">
+      <div class="tophead">
+        <div class="head-container">
+          <h1 id="title">rVoice</h1>
+          <h2 id="subtitle">-- like Discord but crappy --</h2>
+          <br>
+        </div>
+        <div class="mic-container">
+          <input id="micbutton" type="image" src="static/imag/mic.png" />
+          <h2 id="clicktoactive">- MUTED</h2>
+        </div>
+        <div class="user-container">
+          <h2 id="UserID">User </h2>
+          <div class="bottomhead">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <input type="submit" id="setUsername" value="Submit">
+          </div>
+        </div>
+        <h2 id="users"></h2>
+      </div>
+
+  </div>
+  <script src="static/scripts/script.js" ></script>
+</body>
+</html>
