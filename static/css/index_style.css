@@ -1,6 +1,11 @@
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    width: 99%;
-    height: 100vh;
     background: linear-gradient(120deg, #2c95ca 0%, #1d7cac 40%, #0b65be 100%);
     animation: ambient-bg 3s ease-in-out infinite alternate;
     background-size: 200% 200%;
@@ -22,6 +27,52 @@ body {
     font-size: 2rem;
     margin-top: 20px;
 }
+
+.topnav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); /* center it */
+    width: 98%;
+    max-width: 100%;
+    z-index: 999;
+
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-bottom-left-radius: 12px;
+
+    border-bottom-right-radius: 12px;
+
+}
+
+.topnav h2 {
+    float: left;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 100;
+
+    margin-top: 0%;
+    margin-bottom: 0%;
+
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+#WarningLabel {
+    float: right;
+}
+
 
 .head-container {
     position: relative;
@@ -58,11 +109,6 @@ body {
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
-#cat_img {
-    box-shadow: 0 4px 24px rgba(255, 255, 255, .6);
-}
-
-
 .head-container img {
   display: block;
   border-radius: 50%;
@@ -73,23 +119,25 @@ body {
 }
 
 
-.social-container {
-    display: flex;               
+.tasks-container {
+    position: absolute;      /* or fixed */
+    top: 120px;              /* distance from the top of the viewport */
+    left: 50%;               /* center horizontally */
+    transform: translateX(-50%);
+    
+    display: flex;            
     flex-direction: row;         
     align-items: center;         
     justify-content: center;     
+    background: rgba(56, 56, 56, 0.85); 
     border-radius: 12px;        
-    padding: 6px 24px;            
-    margin: 32px auto 0 auto;   
+    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.3);
     max-width: 20rem;
     
-    width: 30%;
+    width: 90%;
     box-sizing: border-box;
     color: #f0f0f0; 
-    gap: 16px;    
-    object-fit: cover;
-
-    
+    gap: 16px;  
 }
 
 .social-container img {
@@ -298,5 +346,10 @@ body {
         margin-left: auto;
         margin-right: auto;
         box-sizing: border-box;
+    }
+
+    .topnav {
+        max-width:max-content;
+    
     }
 }
