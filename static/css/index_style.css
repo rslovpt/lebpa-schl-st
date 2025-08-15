@@ -11,12 +11,15 @@ body, html {
 }
 
 body {
-    background: linear-gradient(120deg, #2c95ca 0%, #1d7cac 40%, #0b65be 100%);
-    animation: ambient-bg 3s ease-in-out infinite alternate;
-    background-size: 200% 200%;
-    color: #e0e0e0;
-    font-family: 'Verdana', sans-serif;
-    padding-top: 80px; /* Padding to prevent overlap with fixed topnav */
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+
+    background-image: url('../../bg.jpg'); /* Path to your image */
+    background-size: cover; /* Scale to cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
 }
 
 @keyframes ambient-bg {
@@ -31,7 +34,7 @@ body {
     width: 100%;
     z-index: 1000; /* Ensure topnav stays above other elements */
     background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding: 10px 20px;
@@ -74,13 +77,20 @@ body {
 
 .task-container {
     flex: 0 0 250px; /* Fixed width for Trello-like columns */
-    min-width: 250px; /* Explicit min-width to prevent overlap */
-    background: rgba(70, 70, 70, 0.9); /* Background on task cards */
+    min-width: 300px; /* Explicit min-width to prevent overlap */
+    background: rgba(44, 44, 44, 0.5); /* Background on task cards */
     border-radius: 8px;
     padding: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     min-height: 0; /* Fix overflow in Safari */
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.task-container h3 {
+    color: #ffffff;
 }
 
 .name-tag {
@@ -98,6 +108,9 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: 90%; /* Slightly less than full width for better centering */
     max-width: 300px; /* Cap width to prevent stretching */
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .task:hover {
@@ -112,6 +125,35 @@ body {
     font-family: 'Verdana', sans-serif;
     line-height: 1.4; /* Improved readability */
 }
+
+.check-btn, .delete-btn {
+    border: none;
+    padding: 6px 10px;
+    font-size: 16px;
+    border-radius: 25%;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+    color: white;
+}
+
+.check-btn {
+    background-color: #4cad4f; /* green */
+}
+
+.check-btn:hover {
+    background-color: #39853d;
+}
+
+.delete-btn {
+    background-color: #b63b2d; /* red */
+}
+
+.delete-btn:hover {
+    background-color: #88281e;
+}
+
+
 
 /* iOS safe area adjustment */
 @supports (padding-top: env(safe-area-inset-top)) {
