@@ -342,8 +342,25 @@ body {
         box-sizing: border-box;
     }
 
+
+}
+
+@media (max-width: 600px) {
     .topnav {
-        max-width:max-content;
-    
+        width: 100%;        /* span the screen */
+        left: 0;            /* align with viewport */
+        transform: none;    /* remove translate */
+        padding: 10px 12px; /* optional smaller padding */
+    }
+}
+
+@media (max-width: 600px) {
+    .tasks-container {
+        position: fixed;   /* stays in viewport */
+        top: 70px;         /* adjust to mobile nav height */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 300px;
     }
 }
