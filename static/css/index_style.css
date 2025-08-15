@@ -83,10 +83,34 @@ body {
     min-height: 0; /* Fix overflow in Safari */
 }
 
-#NameTag {
+.name-tag {
     margin: 0 0 10px 0;
     font-size: 1.5rem;
     font-family: 'Courier New', Courier, monospace;
+}
+
+.task {
+    background: rgba(255, 255, 255, 0.1); /* Distinct background for tasks */
+    border-radius: 4px;
+    padding: 6px 8px; /* Reduced padding for compactness */
+    margin: 6px auto; /* Centered with auto margins */
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 90%; /* Slightly less than full width for better centering */
+    max-width: 300px; /* Cap width to prevent stretching */
+}
+
+.task:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.task h3 {
+    margin: 0;
+    font-size: 0.95rem; /* Slightly smaller font for compactness */
+    color: #ffffff;
+    font-family: 'Verdana', sans-serif;
+    line-height: 1.4; /* Improved readability */
 }
 
 /* iOS safe area adjustment */
@@ -125,18 +149,32 @@ body {
         flex-direction: column; /* Stack top to bottom on mobile */
         flex-wrap: wrap; /* Allow wrapping if needed */
         align-items: center;
-        overflow-x: visible; /* No horizontal scroll on mobile */
+        justify-content: center; /* Center containers on mobile */
+        overflow-x: hidden; /* No horizontal scroll on mobile */
         gap: 12px;
     }
 
     .task-container {
         flex: 0 0 auto;
-        width: 100%; /* Full width on mobile */
+        width: 90%; /* Slightly less than full width for better aesthetics */
         max-width: 90vw; /* Fit viewport */
         min-width: 0; /* Allow shrinking if needed */
+        padding: 10px; /* Slightly less padding for compactness */
     }
 
-    #NameTag {
+    .name-tag {
         font-size: 1.2rem;
+    }
+
+    .task {
+        padding: 5px 6px; /* Further reduced for mobile */
+        margin: 5px auto; /* Centered with auto margins */
+        width: 95%; /* Adjusted for better centering */
+        max-width: 280px; /* Slightly smaller max-width for mobile */
+    }
+
+    .task h3 {
+        font-size: 0.85rem; /* Smaller font for mobile */
+        line-height: 1.3; /* Tighter line height for compactness */
     }
 }
