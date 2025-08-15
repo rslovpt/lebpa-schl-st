@@ -178,3 +178,9 @@ body {
         line-height: 1.3; /* Tighter line height for compactness */
     }
 }  
+
+@media (max-width: 600px) {
+    .tasks-container {
+        min-height: 150px; /* ensure container is visible */
+    }
+}
