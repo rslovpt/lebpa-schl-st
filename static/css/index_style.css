@@ -29,12 +29,10 @@ body {
 }
 
 .topnav {
-    position: fixed;
+    position: fixed;   /* stay on top */
     top: 0;
-    left: 50%;
-    transform: translateX(-50%); /* center it */
-    width: 98%;
-    max-width: 100%;
+    left: 0;
+    width: 100%;
     z-index: 999;
 
     background-color: rgba(255, 255, 255, 0.3);
@@ -49,10 +47,6 @@ body {
     justify-content: space-between;
 
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    border-bottom-left-radius: 12px;
-
-    border-bottom-right-radius: 12px;
-
 }
 
 .topnav h2 {
