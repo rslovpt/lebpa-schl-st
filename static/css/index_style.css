@@ -24,7 +24,7 @@ body {
 }
 
 .tophead {
-    padding-top: 80px; /* Ensure content starts below fixed topnav */
+    padding-top: 100px; /* Increased to ensure clearance below topnav on iOS */
 }
 
 .topnav {
@@ -32,7 +32,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 999;
+    z-index: 1000; /* Ensure topnav stays above other elements */
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -60,7 +60,7 @@ body {
 
 .tasks-container {
     position: relative;
-    margin: 20px auto; /* Adds space below topnav */
+    margin: 20px auto;
     max-width: 90%;
     width: auto;
     display: flex;
@@ -68,13 +68,14 @@ body {
     align-items: flex-start;
     justify-content: center;
     gap: 16px; /* Space between task containers */
-    overflow-x: auto; /* Allow horizontal scrolling if too many tasks */
-    padding: 0 10px; /* Prevent cards from touching edges */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: 0 10px;
 }
 
 .task-container {
-    flex: 0 0 auto;
-    width: 250px; /* Fixed width for Trello-like columns */
+    flex: 0 0 250px; /* Fixed width for Trello-like columns */
+    min-width: 200px; /* Prevent collapse on smaller screens */
     background: rgba(70, 70, 70, 0.9); /* Background on task cards */
     border-radius: 8px;
     padding: 12px;
@@ -103,20 +104,22 @@ body {
     }
 
     .tophead {
-        padding-top: 60px; /* Adjust for smaller topnav height */
+        padding-top: 80px; /* Increased for iOS to account for status bar */
     }
 
     .tasks-container {
         margin: 10px auto;
         flex-direction: column; /* Stack top to bottom on mobile */
         align-items: center;
-        overflow-x: visible; /* No horizontal scroll needed on mobile */
+        overflow-x: visible; /* No horizontal scroll on mobile */
         gap: 12px;
     }
 
     .task-container {
+        flex: 0 0 auto;
         width: 100%; /* Full width on mobile */
-        max-width: 90vw; /* Ensure it fits the viewport */
+        max-width: 90vw; /* Fit viewport */
+        min-width: 0; /* Allow shrinking if needed */
     }
 
     #NameTag {
