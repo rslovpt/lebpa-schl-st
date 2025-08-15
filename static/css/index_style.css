@@ -122,19 +122,22 @@ body {
     margin: 0;
     font-size: 0.95rem; /* Slightly smaller font for compactness */
     color: #ffffff;
-    font-family: 'Verdana', sans-serif;
+    font-family: 'Arial', sans-serif;
     line-height: 1.4; /* Improved readability */
 }
 
-.check-btn, .delete-btn {
+.check-btn{
     border: none;
     padding: 6px 10px;
     font-size: 16px;
-    border-radius: 25%;
+    border-radius: 5%;
     margin-top: 10px;
     cursor: pointer;
     transition: background 0.3s;
     color: white;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .check-btn {
@@ -145,12 +148,33 @@ body {
     background-color: #39853d;
 }
 
-.delete-btn {
-    background-color: #b63b2d; /* red */
+
+.task-create {
+    background: rgba(255, 255, 255, 0.1); /* Distinct background for tasks */
+    border-radius: 4px;
+    padding: 6px 8px; /* Reduced padding for compactness */
+    margin: 6px auto; /* Centered with auto margins */
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 90%; /* Slightly less than full width for better centering */
+    max-width: 300px; /* Cap width to prevent stretching */
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.delete-btn:hover {
-    background-color: #88281e;
+.task-create:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.task-create h3 {
+    margin: 0;
+    font-size: 0.95rem; /* Slightly smaller font for compactness */
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.4; /* Improved readability */
+    
 }
 
 
