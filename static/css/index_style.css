@@ -1,10 +1,13 @@
-body, html {
-    width: 100%;
-    height: 100%;
+/* Reset and viewport setup */
+html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
 }
 
+/* Background gradient */
 body {
     background: linear-gradient(120deg, #2c95ca 0%, #1d7cac 40%, #0b65be 100%);
     animation: ambient-bg 3s ease-in-out infinite alternate;
@@ -12,132 +15,137 @@ body {
     color: #e0e0e0;
 }
 
+/* Background animation */
 @keyframes ambient-bg {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
- 
-.tophead h1 {
-    font-family: 'Verdana', Courier, monospace;
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 20px;
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
 
+/* Top nav */
 .topnav {
-    position: fixed;   /* stay on top */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 999;
-
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding: 10px 20px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .topnav h2 {
-    float: left;
     color: #ffffff;
-    text-align: center;
-    text-decoration: none;
     font-size: 20px;
     font-weight: 100;
-
-    margin-top: 0%;
-    margin-bottom: 0%;
-
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    margin: 0;
+    font-family: 'Lucida Sans', sans-serif;
 }
 
 #WarningLabel {
     float: right;
 }
 
-
+/* Head container */
 .head-container {
     position: relative;
-    align-items: center;
     text-align: center;
-    /*background: rgba(56, 56, 56, 0.85); 
-    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.3);
-    */
-    border-radius: 24px;        
-    
-    padding: 32px 24px;            
-    display: block;         
-    margin: 32px auto 0 auto;   
+    border-radius: 24px;
+    padding: 32px 24px;
+    display: block;
+    margin: 120px auto 0 auto; /* push below nav */
     max-width: 40rem;
     width: 90%;
     box-sizing: border-box;
-    color: #f0f0f0; 
+    color: #f0f0f0;
 }
 
-
 .head-container h1 {
-    margin: 0;
-    margin-bottom: 1%;
-    padding: 0;
+    margin: 0 0 1% 0;
     font-size: 4.6rem;
     font-family: "Verdana", Helvetica, sans-serif;
 }
 
 .head-container h2 {
     margin: 0;
-    
-    padding: 0;
     font-size: 1.8rem;
-    font-family: "Lucida Console", "Courier New", monospace;
+    font-family: "Lucida Console", monospace;
 }
 
 .head-container img {
-  display: block;
-  border-radius: 50%;
-  margin: 0 auto;
-  border-radius: 100%;
-  border: 2px solid whitesmoke;
-  width: 40%;
+    display: block;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 2px solid whitesmoke;
+    width: 40%;
 }
 
-
+/* Tasks container (centered below nav) */
 .tasks-container {
-    position: absolute;      /* or fixed */
-    top: 120px;              /* distance from the top of the viewport */
-    left: 50%;               /* center horizontally */
+    position: fixed;
+    top: 80px; /* below nav */
+    left: 50%;
     transform: translateX(-50%);
-    
-    display: flex;            
-    flex-direction: row;         
-    align-items: center;         
-    justify-content: center;     
-    background: rgba(56, 56, 56, 0.85); 
-    border-radius: 12px;        
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: rgba(56, 56, 56, 0.85);
+    border-radius: 12px;
     box-shadow: 0 4px 24px rgba(255, 255, 255, 0.3);
     max-width: 20rem;
-    
     width: 90%;
     box-sizing: border-box;
-    color: #f0f0f0; 
-    gap: 16px;  
+    color: #f0f0f0;
+    gap: 16px;
+    z-index: 998;
 }
 
+/* Mic container */
+.mic-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: rgba(56, 56, 56, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.3);
+    padding: 6px 24px;
+    margin: 32px auto 0 auto;
+    max-width: 20rem;
+    width: 90%;
+    box-sizing: border-box;
+    color: #f0f0f0;
+    gap: 16px;
+}
+
+/* User container */
+.user-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: rgba(46, 46, 46, 0.85);
+    width: 600px;
+    max-width: 95vw;
+    min-width: 0;
+    height: 500px;
+    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 32px auto 0 auto;
+    gap: 32px;
+    box-sizing: border-box;
+}
+
+/* Social images */
 .social-container img {
     width: 75px;
     height: 75px;
-
     border-radius: 100%;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -146,24 +154,7 @@ body {
     transform: scale(1.12);
 }
 
-.mic-container {
-    display: flex;               
-    flex-direction: row;         
-    align-items: center;         
-    justify-content: center;     
-    background: rgba(56, 56, 56, 0.85); 
-    border-radius: 12px;        
-    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.3);
-    padding: 6px 24px;            
-    margin: 32px auto 0 auto;   
-    max-width: 20rem;
-    
-    width: 90%;
-    box-sizing: border-box;
-    color: #f0f0f0; 
-    gap: 16px;                
-}
-
+/* Mic button */
 #micbutton {
     position: relative;
     width: 40px;
@@ -178,8 +169,12 @@ body {
     cursor: pointer;
     padding: 5px;
     margin-inline: 0;
-
     transition: transform 0.15s;
+}
+
+#micbutton:hover {
+    background-color: #e6e5e5;
+    transform: scale(1.12);
 }
 
 #clicktoactive {
@@ -189,111 +184,23 @@ body {
     text-align: left;
     font: 25px 'Courier New', Courier, monospace;
 }
-#micbutton:hover {
-    background-color: #e6e5e5;
-    transform: scale(1.12);
-}
 
-.user-container {
-    margin-top: 25px;
-    display: flex;
-    flex-direction: row;         
-    align-items: flex-start;     
-    background: rgba(46, 46, 46, 0.85);
-    width: 600px;                
-    max-width: 95vw;             
-    min-width: 0;
-    height: 500px;               
-    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin: 32px auto 0 auto;
-    gap: 32px;                  
-    box-sizing: border-box;
-}
-
-.user-container #UserID {
-    margin: 0;
-    padding: 0 8px 0 0;
-    align-self: flex-start;
-    font-size: 1.3rem;
-    font-family: 'Courier New', Courier, monospace;
-    white-space: nowrap;
-}
-
-.user-container .bottomhead {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 6px;
-    margin: 0;
-    padding: 0;
-    font-family: 'Courier New', Courier, monospace;
-    box-sizing: border-box;
-    padding-top: 0;
-    margin-top: 0;
-    flex-wrap: nowrap;           
-}
-
-.user-container .bottomhead label,
-.user-container .bottomhead input[type="text"],
-.user-container .bottomhead input[type="submit"] {
-    margin: 0;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-.user-container .bottomhead input[type="text"] {
-    width: 100px;
-}
-
-.user-container .bottomhead input[type="submit"] {
-    width: auto;
-    padding: 2px 10px;
-    border-radius: 4px;
-    border: 1px solid #888;
-    background: #333;
-    color: #eee;
-    cursor: pointer;
-}
-
-
-@media (max-width: 500px) {
-    .user-container {
-        width: 98vw;
-        min-width: 0;
-        max-width: 75vw;
-        padding: 8px 4px;
-        height: auto;
-    }
-    .user-container .bottomhead {
-        flex-wrap: wrap;
-        gap: 4px;
-    }
-    .user-container .bottomhead input[type="text"] {
-        width: 80px;
-    }
-    
-}
-
-
+/* Responsive Mobile Styles */
 @media (max-width: 600px) {
-    .mic-container {
-        flex-direction: column;
-        gap: 8px;
-    }
-    #micbutton {
-        width: 32px;
-        height: 32px;
-        font-size: 18px;
-    }
-    #clicktoactive {
-        font-size: 15px;
-        text-align: center;
-    }
-}
 
-@media (max-width: 600px) {
+    .topnav {
+        width: 100%;
+        left: 0;
+        transform: none;
+        padding: 10px 12px;
+    }
+
+    .tasks-container {
+        top: 70px; /* adjust nav height for mobile */
+        width: 90%;
+        max-width: 95vw;
+    }
+
     .head-container {
         display: flex;
         flex-direction: column;
@@ -302,12 +209,8 @@ body {
         padding: 8px 4px;
         width: auto;
         max-width: 83vw;
-        min-width: 0;
         margin-left: auto;
         margin-right: auto;
-        box-sizing: border-box;
-
-        
     }
 
     .head-container img {
@@ -315,52 +218,33 @@ body {
     }
 
     .head-container h1 {
-        margin: 0;
-        margin-bottom: 2%;
-        padding: 0;
         font-size: 5rem;
     }
- 
+
     .head-container h2 {
-        margin: 0;
-        
-        padding: 0;
         font-size: 1.8rem;
     }
 
-    .social-container {
-        display: flex;
+    .mic-container {
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        gap: 8px;
+    }
+
+    #micbutton {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+
+    #clicktoactive {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .user-container {
+        width: 98vw;
+        max-width: 95vw;
         padding: 8px 4px;
-        width: auto;
-        max-width: 83vw;
-        min-width: 0;
-        margin-left: auto;
-        margin-right: auto;
-        box-sizing: border-box;
-    }
-
-
-}
-
-@media (max-width: 600px) {
-    .topnav {
-        width: 100%;        /* span the screen */
-        left: 0;            /* align with viewport */
-        transform: none;    /* remove translate */
-        padding: 10px 12px; /* optional smaller padding */
-    }
-}
-
-@media (max-width: 600px) {
-    .tasks-container {
-        position: fixed;   /* stays in viewport */
-        top: 70px;         /* adjust to mobile nav height */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 300px;
+        height: auto;
     }
 }
