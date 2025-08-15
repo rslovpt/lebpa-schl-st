@@ -3,23 +3,38 @@
     box-sizing: border-box;
 }
 
-body, html {
+/* Make body and html full height and prevent extra scroll */
+html, body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* prevent horizontal scroll */
 }
 
+/* Full viewport background image, iOS safe */
 body {
     width: 100%;
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
-
     background-image: url('../../bg.jpg'); /* Path to your image */
-    background-size: cover; /* Scale to cover the entire area */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent tiling */
+    background-size: cover;      /* cover entire viewport */
+    background-position: center; /* center image */
+    background-repeat: no-repeat;
+    
+    /* iOS Safari safe area handling */
+    height: -webkit-fill-available;
+}
+
+/* Optional: overlay blur effect for the whole body */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    pointer-events: none; /* allow clicks through the overlay */
 }
 
 @keyframes ambient-bg {
