@@ -87,10 +87,15 @@ body {
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+
 }
 
 .task-container h3 {
     color: #ffffff;
+    font-size: 25px;
+    font-family: 'Nunito', sans-serif;
+
+    margin-bottom: 20px;
 }
 
 .name-tag {
@@ -122,7 +127,8 @@ body {
     margin: 0;
     font-size: 0.95rem; /* Slightly smaller font for compactness */
     color: #ffffff;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 100;
     line-height: 1.4; /* Improved readability */
 }
 
@@ -150,6 +156,7 @@ body {
 
 
 .task-create {
+    border: none;
     background: rgba(255, 255, 255, 0.1); /* Distinct background for tasks */
     border-radius: 4px;
     padding: 6px 8px; /* Reduced padding for compactness */
@@ -168,12 +175,14 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.task-create h3 {
+.task-create {
     margin: 0;
     font-size: 0.95rem; /* Slightly smaller font for compactness */
     color: #ffffff;
-    font-family: 'Arial', sans-serif;
     line-height: 1.4; /* Improved readability */
+
+    font-family: 'Nunito', sans-serif;
+    font-weight: 100;
     
 }
 
