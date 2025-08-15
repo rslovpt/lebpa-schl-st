@@ -16,15 +16,12 @@ body {
     background-size: 200% 200%;
     color: #e0e0e0;
     font-family: 'Verdana', sans-serif;
+    padding-top: 80px; /* Padding to prevent overlap with fixed topnav */
 }
 
 @keyframes ambient-bg {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
-}
-
-.tophead {
-    padding-top: 100px; /* Increased to ensure clearance below topnav on iOS */
 }
 
 .topnav {
@@ -65,22 +62,25 @@ body {
     width: auto;
     display: flex;
     flex-direction: row; /* Side by side on desktop */
+    flex-wrap: nowrap; /* Prevent wrapping to avoid overlap */
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start; /* Start from left for scrolling */
     gap: 16px; /* Space between task containers */
     overflow-x: auto; /* Allow horizontal scrolling */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     padding: 0 10px;
+    min-height: 0; /* Fix potential flex overflow issues */
 }
 
 .task-container {
     flex: 0 0 250px; /* Fixed width for Trello-like columns */
-    min-width: 200px; /* Prevent collapse on smaller screens */
+    min-width: 250px; /* Explicit min-width to prevent overlap */
     background: rgba(70, 70, 70, 0.9); /* Background on task cards */
     border-radius: 8px;
     padding: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    min-height: 0; /* Fix overflow in Safari */
 }
 
 #NameTag {
@@ -89,8 +89,25 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
+/* iOS safe area adjustment */
+@supports (padding-top: env(safe-area-inset-top)) {
+    body {
+        padding-top: calc(env(safe-area-inset-top) + 80px);
+    }
+}
+
 /* Mobile adjustments */
 @media (max-width: 600px) {
+    body {
+        padding-top: 60px; /* Adjusted padding for mobile */
+    }
+
+    @supports (padding-top: env(safe-area-inset-top)) {
+        body {
+            padding-top: calc(env(safe-area-inset-top) + 60px);
+        }
+    }
+
     .topnav {
         padding: 8px 12px;
     }
@@ -103,13 +120,10 @@ body {
         font-size: 14px;
     }
 
-    .tophead {
-        padding-top: 80px; /* Increased for iOS to account for status bar */
-    }
-
     .tasks-container {
         margin: 10px auto;
         flex-direction: column; /* Stack top to bottom on mobile */
+        flex-wrap: wrap; /* Allow wrapping if needed */
         align-items: center;
         overflow-x: visible; /* No horizontal scroll on mobile */
         gap: 12px;
