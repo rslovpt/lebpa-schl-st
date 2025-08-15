@@ -134,8 +134,8 @@ body {
 
 .check-btn{
     border: none;
-    padding: 6px 10px;
-    font-size: 16px;
+    padding: 4px 8px;
+    font-size: 14px;
     border-radius: 5%;
     margin-top: 10px;
     cursor: pointer;
@@ -235,6 +235,7 @@ body {
         max-width: 90vw; /* Fit viewport */
         min-width: 0; /* Allow shrinking if needed */
         padding: 10px; /* Slightly less padding for compactness */
+        margin-bottom: 10px;
     }
 
     .name-tag {
@@ -246,6 +247,7 @@ body {
         margin: 5px auto; /* Centered with auto margins */
         width: 95%; /* Adjusted for better centering */
         max-width: 280px; /* Slightly smaller max-width for mobile */
+        margin-bottom: 10px;
     }
 
     .task h3 {
