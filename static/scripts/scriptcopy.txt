@@ -1,0 +1,47 @@
+const socket = io();
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+socket.on('connect', () => {
+    console.log('Connected to server');
+});
+
+socket.on('server_message', (msg) => {
+    console.log('Server message:', msg);
+});
+
+socket.on('establishUserCredential', (user) => {
+    userID = user;
+    document.getElementById('UserID').innerText = 'User ' + userID;
+});
+
+
+socket.on('update', (jsonData) => {
+    const data = JSON.parse(jsonData);
+    for (let i = 0; i < data.length; i++) {
+        if (i == 0) {
+            continue;
+        } else {
+            data[i] = " " + data[i];
+        }
+    }
+    document.getElementById('users').innerText = 'Users: ' + data;
+})
+
+
+document.getElementById('micbutton').addEventListener('click', () => {
+    audioContext.resume().then(() => {
+        getMicrophoneAccess();
+        document.getElementById('clicktoactive').innerText = 'ACTIVE'
+    });
+});
+
+
+document.getElementById('setUsername').addEventListener('click', () => {
+    console.log('Username set');
+    const username = document.getElementById('username').value;
+
+    socket.emit('client-control', JSON.stringify({
+        type: 'setUsername',
+        in: {username}
+    }));
+})

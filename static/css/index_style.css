@@ -25,6 +25,8 @@ body {
     height: -webkit-fill-available;
 }
 
+
+
 /* Optional: overlay blur effect for the whole body */
 body::before {
     content: "";
@@ -201,7 +203,16 @@ body::before {
     
 }
 
+.task {
+    word-break: break-word;       /* Break long words to fit container */
+    overflow-wrap: break-word;    /* Same, extra support */
+}
 
+.task-edit-input {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;        /* Preserve line breaks but wrap */
+}
 
 /* iOS safe area adjustment */
 @supports (padding-top: env(safe-area-inset-top)) {

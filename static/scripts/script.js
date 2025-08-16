@@ -1,92 +1,97 @@
-const socket = io();
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const createButtons = document.getElementsByClassName('task-create');
 
-let userID = null
+function makeTaskEditable(task, maxChars = 108) {
+    const taskText = task.querySelector('h3');
 
-function float32ToInt16(float32Array) {
-const int16Array = new Int16Array(float32Array.length);
-    for (let i = 0; i < float32Array.length; i++) {
-        const s = Math.max(-1, Math.min(1, float32Array[i]));
-        int16Array[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
-    }
-    return int16Array;
-}
+    taskText.addEventListener('click', () => {
+        const input = document.createElement('textarea');
+        input.value = taskText.textContent;
+        input.className = 'task-edit-input';
 
-async function getMicrophoneAccess() {
-try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        // Style to match task
+        input.style.width = '100%';
+        input.style.fontFamily = taskText.style.fontFamily || 'Nunito, sans-serif';
+        input.style.fontSize = taskText.style.fontSize || '0.95rem';
+        input.style.background = 'rgba(255,255,255,0.1)';
+        input.style.color = '#fff';
+        input.style.border = 'none';
+        input.style.outline = 'none';
+        input.style.padding = '2px 4px';
+        input.style.borderRadius = '4px';
+        input.style.resize = 'none';
+        input.style.boxSizing = 'border-box';
+        input.style.lineHeight = '1.4';
+        input.style.overflow = 'hidden';
+        input.style.wordBreak = 'break-word';
+        input.style.overflowWrap = 'break-word';
+        input.style.whiteSpace = 'pre-wrap';
 
-    const source = audioContext.createMediaStreamSource(stream);
-    const processor = audioContext.createScriptProcessor(8192, 1, 1);
-    source.connect(processor);
-    processor.connect(audioContext.destination); // Keeps it alive
+        // Counter
+        const counter = document.createElement('div');
+        counter.style.position = 'absolute';
+        counter.style.bottom = '2px';
+        counter.style.right = '6px';
+        counter.style.fontSize = '0.75rem';
+        counter.style.color = '#ccc';
+        counter.textContent = `${input.value.length}/${maxChars}`;
 
-    processor.onaudioprocess = (e) => {
-        const input = e.inputBuffer.getChannelData(0);
-        const int16 = float32ToInt16(input);
-        socket.emit('client_audio', int16.buffer);
-    };
-} catch (err) {
-    console.error('Mic access error:', err);
-}
-}
+        task.style.position = 'relative';
+        task.appendChild(counter);
 
-socket.on('connect', () => {
-    console.log('Connected to server');
-});
+        task.replaceChild(input, taskText);
+        input.focus();
 
-socket.on('server_message', (msg) => {
-    console.log('Server message:', msg);
-});
-
-socket.on('establishUserCredential', (user) => {
-    userID = user;
-    document.getElementById('UserID').innerText = 'User ' + userID;
-});
-
-socket.on('audio_data', async (data) => {
-    const int16 = new Int16Array(data);
-    const float32 = new Float32Array(int16.length);
-    for (let i = 0; i < int16.length; i++) {
-        float32[i] = int16[i] / 0x7FFF;
-    }
-
-    const audioBuffer = audioContext.createBuffer(1, float32.length, audioContext.sampleRate);
-    audioBuffer.getChannelData(0).set(float32);
-
-    const source = audioContext.createBufferSource();
-    source.buffer = audioBuffer;
-    source.connect(audioContext.destination);
-    source.start();
- });
-
-socket.on('update', (jsonData) => {
-    const data = JSON.parse(jsonData);
-    for (let i = 0; i < data.length; i++) {
-        if (i == 0) {
-            continue;
-        } else {
-            data[i] = " " + data[i];
+        function resize() {
+            input.style.height = 'auto';
+            input.style.height = input.scrollHeight + 'px';
         }
-    }
-    document.getElementById('users').innerText = 'Users: ' + data;
-})
+        resize();
 
+        input.addEventListener('input', () => {
+            if (input.value.length > maxChars) input.value = input.value.substring(0, maxChars);
+            counter.textContent = `${input.value.length}/${maxChars}`;
+            resize();
+        });
 
-document.getElementById('micbutton').addEventListener('click', () => {
-    audioContext.resume().then(() => {
-        getMicrophoneAccess();
-        document.getElementById('clicktoactive').innerText = 'ACTIVE'
+        function save() {
+            taskText.textContent = input.value || 'New task goes here';
+            task.replaceChild(taskText, input);
+            task.removeChild(counter);
+        }
+
+        input.addEventListener('blur', save);
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                save();
+            }
+        });
     });
-});
+}
+// Add new tasks
+for (let btn of createButtons) {
+    btn.addEventListener('click', () => {
+        const newTask = document.createElement('div');
+        newTask.classList.add('task');
+        newTask.innerHTML = `
+            <h3>Click Text to Edit</h3>
+            <button class="check-btn" title="Mark Complete">Mark Done</button>
+        `;
 
+        const container = btn.parentElement;
+        container.insertBefore(newTask, btn);
 
-document.getElementById('setUsername').addEventListener('click', () => {
-    console.log('Username set');
-    const username = document.getElementById('username').value;
+        const markDoneBtn = newTask.querySelector('.check-btn');
+        markDoneBtn.addEventListener('click', () => newTask.remove());
 
-    socket.emit('client-control', JSON.stringify({
-        type: 'setUsername',
-        in: {username}
-    }));
-})
+        makeTaskEditable(newTask);
+    });
+}
+
+// Existing tasks
+const existingTasks = document.getElementsByClassName('task');
+for (let task of existingTasks) {
+    const markDoneBtn = task.querySelector('.check-btn');
+    if (markDoneBtn) markDoneBtn.addEventListener('click', () => task.remove());
+    makeTaskEditable(task);
+}
