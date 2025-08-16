@@ -1,6 +1,0 @@
-- Polish and make client ui better (Current Task)
-- Add chat system and chat logs (saved to specific user)
-- Voice Rooms
-- Use cookies for client?
-- Complete microphone use in client
-- Change audio input class to a non-depricated version in client?
