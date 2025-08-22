@@ -10,7 +10,7 @@ sleep 5
 
 echo "Starting ngrok tunnel..."
 # Make sure ngrok is in PATH or use full path
-ngrok http 5000 &
+ngrok http 8594 &
 
 # Wait 5 seconds
 sleep 5
