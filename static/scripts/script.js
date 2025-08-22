@@ -1,5 +1,5 @@
 // ================= Socket.IO Setup =================
-const socket = io("https://0c1f4618a860.ngrok-free.app");
+const socket = io("https://0c1f4618a860.ngrok-free.app", { transports: ['websocket'], secure: true });
 
 function refreshConnection() {
     if (socket.connected) {
