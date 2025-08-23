@@ -15,7 +15,7 @@ setInterval(() => {
         console.log("Disconnected — trying to reconnect...");
         socket.connect();
     }
-}, 100); // 2000ms = 2 seconds
+}, 2000); // 2000ms = 2 seconds
 
 socket.on('connect', () => {
   console.log('Connected to server');
